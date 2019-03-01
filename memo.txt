@@ -1,0 +1,167 @@
+-------------------------------------------------------------------------------------------------------------------------------------
+average.ha
+-------------------------------------------------------------------------------------------------------------------------------------
+
+C:\Users\Daniel\Desktop\Computer Science\Homework\hw3>python hmmmAssembler.py -f
+ "final submission\average.ha"
+
+----------------------
+| ASSEMBLY SUCCESSFUL |
+----------------------
+
+0  : 0001 0011 1111 1111        0       setn r3 -1              # set
+1  : 0001 0010 0000 0000        1       setn r2 0               # set
+2  : 0000 0001 0000 0001        2       read r1                 # read user
+3  : 0101 0011 0000 0001        3       addn r3 1               # add 1 to
+4  : 0110 0010 0001 0010        4       add r2 r1 r2    	# add the input
+5  : 1101 0001 0000 0010        5       jnezn r1 2              # if
+6  : 1001 0100 0010 0011        6       div r4 r2 r3    	# devide the sum of
+7  : 1010 0010 0010 0011        7       mod r2 r2 r3    	# returns the
+8  : 0000 0100 0000 0010        8       write r4                # prints
+9  : 0000 0010 0000 0010        9       write r2                # prints the
+10 : 0000 0000 0000 0000        10      halt                    # stops the
+
+
+C:\Users\Daniel\Desktop\Computer Science\Homework\hw3>python hmmmSimulator.py
+Enter debugging mode? no
+Enter number: 12
+Enter number: 14
+Enter number: 15
+Enter number: 0
+13
+2
+
+C:\Users\Daniel\Desktop\Computer Science\Homework\hw3>python hmmmSimulator.py
+Enter debugging mode? no
+Enter number: 10
+Enter number: 5
+Enter number: 1
+Enter number: 0
+5
+1
+
+C:\Users\Daniel\Desktop\Computer Science\Homework\hw3>
+
+-------------------------------------------------------------------------------------------------------------------------------------
+loopFibonacci.ha
+-------------------------------------------------------------------------------------------------------------------------------------
+
+C:\Users\Daniel\Desktop\Computer Science\Homework\hw3>python hmmmAssembler.py -f
+ "final submission\loopFibonacci.ha"
+
+----------------------
+| ASSEMBLY SUCCESSFUL |
+----------------------
+
+0  : 0000 0001 0000 0001        0       read r1
+1  : 1111 0001 0000 1111        1       jltzn r1 15
+2  : 0001 0010 0000 0000        2       setn r2 0
+3  : 0001 0011 0000 0000        3       setn r3 0
+4  : 1100 0001 0000 1101        4       jeqzn r1 13
+5  : 0101 0001 1111 1111        5       addn r1 -1
+6  : 1101 0011 0000 1001        6       jnezn r3 9
+7  : 0001 0011 0000 0001        7       setn r3 1
+8  : 1011 0000 0000 0100        8       jumpn 4
+9  : 0110 0100 0010 0000        9       copy r4 r2
+10 : 0110 0010 0011 0000        10      copy r2 r3
+11 : 0110 0011 0011 0100        11      add r3 r3 r4                    #
+12 : 1011 0000 0000 0100        12      jumpn 4
+13 : 0000 0011 0000 0010        13      write r3
+14 : 0000 0000 0000 0000        14      halt
+15 : 0001 0001 0000 0000        15      setn r1 0
+16 : 0000 0001 0000 0010        16      write r1
+17 : 0000 0000 0000 0000        17      halt
+
+
+C:\Users\Daniel\Desktop\Computer Science\Homework\hw3>python hmmmSimulator.py
+Enter debugging mode? no
+Enter number: 0
+0
+
+C:\Users\Daniel\Desktop\Computer Science\Homework\hw3>python hmmmSimulator.py
+Enter debugging mode? no
+Enter number: 1
+1
+
+C:\Users\Daniel\Desktop\Computer Science\Homework\hw3>python hmmmSimulator.py
+Enter debugging mode? no
+Enter number: 2
+1
+
+C:\Users\Daniel\Desktop\Computer Science\Homework\hw3>python hmmmSimulator.py
+Enter debugging mode? no
+Enter number: 7
+13
+
+C:\Users\Daniel\Desktop\Computer Science\Homework\hw3>
+
+-------------------------------------------------------------------------------------------------------------------------------------
+recFibonacci.ha
+-------------------------------------------------------------------------------------------------------------------------------------
+
+
+C:\Users\Daniel\Desktop\Computer Science\Homework\hw3>python hmmmAssembler.py -f
+ "final submission\recFibonacci.ha"
+
+----------------------
+| ASSEMBLY SUCCESSFUL |
+----------------------
+
+0  : 0001 1111 0110 0100        0       setn r15 100                    #
+1  : 0001 0001 0000 0000        1       setn r1 0
+2  : 0000 0010 0000 0001        2       read r2
+3  : 1011 1110 0000 0110        3       calln r14 6
+4  : 0000 0001 0000 0010        4       write r1
+5  : 0000 0000 0000 0000        5       halt
+6  : 1110 0010 0000 1000        6       jgtzn r2 8
+7  : 0000 1110 0000 0011        7       jumpr r14
+8  : 0110 0011 0010 0000        8       copy r3 r2
+9  : 0101 0011 1111 1110        9       addn r3 -2
+10 : 1110 0011 0000 1101        10      jgtzn r3 13
+11 : 0101 0001 0000 0001        11      addn r1 1
+12 : 0000 1110 0000 0011        12      jumpr r14
+13 : 0101 1111 0000 0001        13      addn    r15,1                   #
+14 : 0100 0010 1111 0001        14      storer  r2,r15                  #
+15 : 0101 1111 0000 0001        15      addn    r15,1                   #
+16 : 0100 1110 1111 0001        16      storer  r14,r15                 #
+17 : 0101 0010 1111 1111        17      addn r2 -1
+18 : 1011 1110 0000 0110        18      calln r14 6
+19 : 0100 1110 1111 0000        19      loadr   r14,r15                 #
+20 : 0101 1111 1111 1111        20      addn    r15,-1                  #
+21 : 0100 0010 1111 0000        21      loadr   r2,r15                  #
+22 : 0101 1111 1111 1111        22      addn    r15,-1                  #
+23 : 0101 1111 0000 0001        23      addn    r15,1                   #
+24 : 0100 0010 1111 0001        24      storer  r2,r15                  #
+25 : 0101 1111 0000 0001        25      addn    r15,1                   #
+26 : 0100 1110 1111 0001        26      storer  r14,r15                 #
+27 : 0101 0010 1111 1110        27      addn r2 -2
+28 : 1011 1110 0000 0110        28      calln r14 6
+29 : 0100 1110 1111 0000        29      loadr   r14,r15                 #
+30 : 0101 1111 1111 1111        30      addn    r15,-1                  #
+31 : 0100 0010 1111 0000        31      loadr   r2,r15                  #
+32 : 0101 1111 1111 1111        32      addn    r15,-1                  #
+33 : 0000 1110 0000 0011        33      jumpr r14
+
+
+C:\Users\Daniel\Desktop\Computer Science\Homework\hw3>python hmmmSimulator.py
+Enter debugging mode? no
+Enter number: 0
+0
+
+C:\Users\Daniel\Desktop\Computer Science\Homework\hw3>python hmmmSimulator.py
+Enter debugging mode? no
+Enter number: 1
+1
+
+C:\Users\Daniel\Desktop\Computer Science\Homework\hw3>python hmmmSimulator.py
+Enter debugging mode? no
+Enter number: 2
+1
+
+C:\Users\Daniel\Desktop\Computer Science\Homework\hw3>python hmmmSimulator.py
+Enter debugging mode? no
+Enter number: 7
+13
+
+C:\Users\Daniel\Desktop\Computer Science\Homework\hw3>
+
